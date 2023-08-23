@@ -24,7 +24,7 @@ Padding progressText(txt) {
     padding: Ppadding.ver4Padding,
     child: Text(
       txt,
-      style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+      style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
     ),
   );
 }

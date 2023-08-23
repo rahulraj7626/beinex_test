@@ -30,7 +30,10 @@ class HomeScreen extends StatelessWidget {
                     ? const Center(
                         child: CircularProgressIndicator.adaptive(),
                       )
-                    : GridWdget(data: [GridItem(), ...controller.mainData]);
+                    : GridWdget(
+                        data: [GridItem(), ...controller.mainData],
+                        controller: controller,
+                      );
               }),
         ),
       ),

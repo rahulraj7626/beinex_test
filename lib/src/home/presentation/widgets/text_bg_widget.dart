@@ -24,7 +24,7 @@ Widget levelWidget(List<LevelModel> levels) {
 
 Container bgContainer(Color color, txt) {
   return Container(
-      margin: EdgeInsets.all(4),
+      margin: const EdgeInsets.all(4),
       padding: const EdgeInsets.all(6),
       decoration:
           BoxDecoration(color: color, borderRadius: BorderRadius.circular(8)),

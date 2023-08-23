@@ -31,10 +31,8 @@ class ProgressBar extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(6),
                   child: LinearProgressIndicator(
-                      semanticsLabel: "rjhrkjhj",
-                      semanticsValue: "222",
                       value: progressValue(totalValue, completedValue),
-                      minHeight: 30,
+                      minHeight: 25,
                       backgroundColor: Colors.white,
                       color: CColors.red),
                 ),

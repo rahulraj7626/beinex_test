@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../config/common_widgets/alert.dart';
@@ -15,6 +18,9 @@ class HomeController extends GetxController {
 
   List<GridItem> mainData = <GridItem>[].obs;
   List<ChartModel> chartData = <ChartModel>[].obs;
+  RxInt donutSum = 0.obs;
+  List<Color> donutColors = <Color>[].obs;
+  RxMap<String, double> dataMap = <String, double>{}.obs;
 
   RxBool isLoading = false.obs;
   @override
@@ -30,20 +36,48 @@ class HomeController extends GetxController {
 
     if (data != null) {
       mainData = data;
-      chartData = data
-          .map((e) => ChartModel(
-                title:
-                    e.title!.length > 40 ? e.title!.substring(0, 40) : e.title!,
-                total: e.status!.totalCount,
-                completed: e.status!.currentCount,
-              ))
-          .toList();
+      setChartData(data);
+      setDonutData(data);
       update();
       hideLoading();
     } else {
       AppAlert.showSnackBar("Something went wrong");
       hideLoading();
     }
+  }
+
+  changeDate(int i, String setDate) {
+    mainData[i - 1].date = setDate;
+    update();
+  }
+
+  setChartData(List<GridItem> data) {
+    chartData = data
+        .map((e) => ChartModel(
+              title:
+                  e.title!.length > 40 ? e.title!.substring(0, 40) : e.title!,
+              total: e.status!.totalCount,
+              completed: e.status!.currentCount,
+            ))
+        .toList();
+    update();
+  }
+
+  setDonutData(List<GridItem> data) {
+    for (var element in data) {
+      for (var e in element.level1!) {
+        donutSum += 1;
+        if (!dataMap.containsKey(toSub(e.value!))) {
+          dataMap[toSub(e.value!)] = 1;
+          donutColors.add(
+            Colors.primaries[Random().nextInt(Colors.primaries.length)],
+          );
+        } else {
+          dataMap[toSub(e.value!)] = (dataMap[toSub(e.value!)]! + 1);
+        }
+      }
+    }
+    update();
   }
 
   showLoading() {
@@ -61,3 +95,5 @@ class HomeController extends GetxController {
     update();
   }
 }
+
+String toSub(s) => s.length > 10 ? s.substring(0, 10) : s;

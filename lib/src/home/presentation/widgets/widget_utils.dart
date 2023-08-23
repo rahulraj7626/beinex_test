@@ -4,7 +4,7 @@ Map<int, TableColumnWidth>? cellSize = const {
   0: FixedColumnWidth(80),
   1: FixedColumnWidth(100),
   2: FixedColumnWidth(200),
-  3: FixedColumnWidth(150),
+  3: FixedColumnWidth(200),
   4: FixedColumnWidth(150),
   5: FixedColumnWidth(160),
   6: FixedColumnWidth(160),

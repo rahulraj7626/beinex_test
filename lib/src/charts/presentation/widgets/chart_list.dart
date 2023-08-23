@@ -13,6 +13,9 @@ class BarChartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: BeveledRectangleBorder(
+        borderRadius: BorderRadius.circular(6.0),
+      ),
       margin: Ppadding.cardPadding,
       elevation: 7,
       child: Padding(

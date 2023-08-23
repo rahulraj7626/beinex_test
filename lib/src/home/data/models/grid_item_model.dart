@@ -11,7 +11,7 @@ class GridItem {
   @JsonKey(name: 'item_id')
   final String? itemId;
   final bool? active;
-  final String? date;
+  String? date;
   final bool? overdue;
   @JsonKey(name: 'item_type1')
   final LevelModel? itemType1;
