@@ -8,7 +8,7 @@ This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
-- [Screenshots,APK, Demo video here....](https://drive.google.com/drive/folders/1HcKLfsd1pebdhM0pFpJjA-2YePQ9o-7E?usp=sharing)
+- [Screenshots,APK, Demo video here..](https://drive.google.com/drive/folders/1HcKLfsd1pebdhM0pFpJjA-2YePQ9o-7E?usp=sharing)
 - 
 - [Flutter GetX: Statemanagement, Route Management](https://pub.dev/packages/get)
 - [Json Serializable: Data modeling generation](https://pub.dev/packages/json_serializable)
