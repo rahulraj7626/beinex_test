@@ -15,7 +15,7 @@ class HomeController extends GetxController {
   HomeController() {
     _homeService = Get.find<HomeRepositoryImpl>();
   }
-
+  final transformationController = TransformationController();
   List<GridItem> mainData = <GridItem>[].obs;
   List<ChartModel> chartData = <ChartModel>[].obs;
   RxInt donutSum = 0.obs;
@@ -92,6 +92,11 @@ class HomeController extends GetxController {
 
   hideLoading() {
     isLoading.value = false;
+    update();
+  }
+
+  zoomOut() {
+    transformationController.toScene(Offset.zero);
     update();
   }
 }

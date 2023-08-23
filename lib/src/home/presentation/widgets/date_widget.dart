@@ -22,8 +22,10 @@ class DateWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        await DateTimeUtils.pickDate(context)
-            .then((value) => c.changeDate(index, value));
+        if (!status) {
+          await DateTimeUtils.pickDate(context)
+              .then((value) => c.changeDate(index, value));
+        }
       },
       child: Row(
         children: [
@@ -31,7 +33,7 @@ class DateWidget extends StatelessWidget {
             padding: Ppadding.ver4Padding,
             child: Icon(
               Icons.calendar_month,
-              color: status ? Colors.red : Colors.green,
+              color: !status ? Colors.red : Colors.green,
             ),
           ),
           textWidget(date)

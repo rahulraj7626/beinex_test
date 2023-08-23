@@ -13,34 +13,21 @@ import 'text_bg_widget.dart';
 import 'text_widget.dart';
 import 'widget_utils.dart';
 
-class GridWdget extends StatefulWidget {
+class GridWdget extends StatelessWidget {
   final List<GridItem> data;
   final HomeController controller;
 
   const GridWdget({super.key, required this.data, required this.controller});
 
   @override
-  State<GridWdget> createState() => _GridWdgetState();
-}
-
-class _GridWdgetState extends State<GridWdget> {
-  final transformationController = TransformationController();
-  @override
   Widget build(BuildContext context) {
-    final datas = widget.data;
+    final datas = data;
     return Center(
         child: InteractiveViewer(
-      transformationController: transformationController,
+      transformationController: controller.transformationController,
       onInteractionEnd: (details) {
-        setState(() {
-          // unzoom when interaction has ended
-          transformationController.toScene(Offset.zero);
-        });
+        controller.zoomOut();
       },
-
-      // set the boundary margin for the image
-      boundaryMargin: const EdgeInsets.all(20.0),
-      // set min scale here
       minScale: 0.1,
       // set maximum scall here
       maxScale: 5.0,
@@ -58,7 +45,7 @@ class _GridWdgetState extends State<GridWdget> {
                   (di, de) => di == 0
                       ? TableRow(
                           children: titles.mapIndexed((ti, te) {
-                            return titleWidget(te);
+                            return titleWidget(te, true);
                           }).toList(),
                         )
                       : TableRow(
@@ -77,8 +64,8 @@ class _GridWdgetState extends State<GridWdget> {
                               },
                               child: Padding(
                                 padding: Ppadding.defualtPadding,
-                                child: rowContent(
-                                    ci, datas[di], widget.controller, di),
+                                child:
+                                    rowContent(ci, datas[di], controller, di),
                               ),
                             );
                           }).toList(),
@@ -102,7 +89,7 @@ Widget rowContent(int index, GridItem item, HomeController c, int i) {
       return progressText(item.title);
     case 3:
       return DateWidget(
-          status: true,
+          status: item.overdue!,
           date: DateTimeUtils.formatDateHiphen(item.date.toString()),
           index: i,
           c: c);

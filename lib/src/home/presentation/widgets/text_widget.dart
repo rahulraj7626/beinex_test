@@ -9,12 +9,15 @@ Text textWidget(txt) {
   );
 }
 
-Padding titleWidget(txt) {
+Padding titleWidget(txt, bool isTitle) {
   return Padding(
     padding: Ppadding.titlePadding,
     child: Text(
       txt,
-      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+      style: TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 16,
+          color: isTitle ? Colors.blue : Colors.black87),
     ),
   );
 }

@@ -20,58 +20,68 @@ class ChartScreen extends StatelessWidget {
     ]);
     var data = Get.arguments;
 
-    return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          toolbarHeight: 150,
-          elevation: 0,
-          bottomOpacity: 0.0,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: <Color>[CColors.skyBlue, CColors.black]),
-            ),
-            child: SafeArea(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                  headWidget(data[0], 18),
-                  headWidget(
-                      data[1].length > 150
-                          ? data[1].substring(0, 150)
-                          : data[1],
-                      16)
-                ])),
-          ),
-        ),
-        body: Column(children: [
-          const Expanded(
-            flex: 1,
-            child: BarChartWidget(),
-          ),
-          Expanded(
-            flex: 1,
-            child: Card(
-              shape: BeveledRectangleBorder(
-                borderRadius: BorderRadius.circular(6.0),
+    return WillPopScope(
+      onWillPop: () async {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+          DeviceOrientation.landscapeLeft,
+          DeviceOrientation.landscapeRight,
+        ]);
+        return true;
+      },
+      child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            toolbarHeight: 150,
+            elevation: 0,
+            bottomOpacity: 0.0,
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: <Color>[CColors.skyBlue, CColors.black]),
               ),
-              elevation: 7,
-              margin: Ppadding.cardPadding,
-              child: Padding(
-                padding: Ppadding.cardPadding,
-                child: GetBuilder<HomeController>(builder: (c) {
-                  return ChartWidget(
-                      sum: c.donutSum.toString(),
-                      colorList: c.donutColors,
-                      dataMap: c.dataMap);
-                }),
-              ),
+              child: SafeArea(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                    headWidget(data[0], 18),
+                    headWidget(
+                        data[1].length > 150
+                            ? data[1].substring(0, 150)
+                            : data[1],
+                        16)
+                  ])),
             ),
           ),
-          verSpace(10)
-        ]));
+          body: Column(children: [
+            const Expanded(
+              flex: 1,
+              child: BarChartWidget(),
+            ),
+            Expanded(
+              flex: 1,
+              child: Card(
+                shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.circular(6.0),
+                ),
+                elevation: 7,
+                margin: Ppadding.cardPadding,
+                child: Padding(
+                  padding: Ppadding.cardPadding,
+                  child: GetBuilder<HomeController>(builder: (c) {
+                    return ChartWidget(
+                        sum: c.donutSum.toString(),
+                        colorList: c.donutColors,
+                        dataMap: c.dataMap);
+                  }),
+                ),
+              ),
+            ),
+            verSpace(10)
+          ])),
+    );
   }
 }
 
