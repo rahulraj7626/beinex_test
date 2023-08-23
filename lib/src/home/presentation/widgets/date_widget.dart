@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../../config/app_utils/date_utils.dart';
 import '../../../../config/common_widgets/alert.dart';
 
+///Date widget of grid view
 class DateWidget extends StatelessWidget {
   final bool status;
   final String date;
@@ -23,6 +24,7 @@ class DateWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
+        ///Check whether the status
         if (!status) {
           await DateTimeUtils.pickDate(context)
               .then((value) => c.changeDate(index, value));

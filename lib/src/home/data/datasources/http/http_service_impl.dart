@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'http_service.dart';
+import '../../../../http/http_service.dart';
 
 ///Implementation of service methods
 class HttpServiceRequests implements HttpService {

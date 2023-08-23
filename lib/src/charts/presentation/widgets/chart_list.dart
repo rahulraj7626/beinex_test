@@ -5,6 +5,7 @@ import '../../../../config/constants/style_constants.dart';
 import '../../../home/presentation/controller/home_controller.dart';
 import 'progress_bar.dart';
 
+///Bart Cahrt widget
 class BarChartWidget extends StatelessWidget {
   const BarChartWidget({
     super.key,

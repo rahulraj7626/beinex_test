@@ -9,6 +9,7 @@ import '../../../home/presentation/controller/home_controller.dart';
 import '../widgets/chart_list.dart';
 import '../widgets/chart_widget.dart';
 
+///Chart screen
 class ChartScreen extends StatelessWidget {
   const ChartScreen({super.key});
 

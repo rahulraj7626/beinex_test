@@ -20,7 +20,6 @@ class MyApp extends StatelessWidget {
       theme: theme,
       getPages: RoutesPages.routes,
       initialRoute: Routes.getHome(),
-      // home: MyAppp(),
     );
   }
 }

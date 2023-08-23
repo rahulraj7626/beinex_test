@@ -9,9 +9,11 @@ import '../../data/models/grid_item_model.dart';
 import '../../data/repositories/home_repository.dart';
 import '../../domain/repositories/home_repository.dart';
 
+/// Home controller
 class HomeController extends GetxController {
   HomeRepository? _homeService;
 
+  ///Creeting instance of the service
   HomeController() {
     _homeService = Get.find<HomeRepositoryImpl>();
   }
@@ -29,6 +31,7 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
+  ///Geting data from api
   Future getHomeData() async {
     showLoading();
 
@@ -46,11 +49,13 @@ class HomeController extends GetxController {
     }
   }
 
+  ///Change Picket Date
   changeDate(int i, String setDate) {
     mainData[i - 1].date = setDate;
     update();
   }
 
+  ///Set Chart data The model used ChartModel
   setChartData(List<GridItem> data) {
     chartData = data
         .map((e) => ChartModel(
@@ -63,6 +68,7 @@ class HomeController extends GetxController {
     update();
   }
 
+  ///Set DATA for Donut Diagram
   setDonutData(List<GridItem> data) {
     for (var element in data) {
       for (var e in element.level1!) {
@@ -80,6 +86,7 @@ class HomeController extends GetxController {
     update();
   }
 
+  ///Show loading method while api
   showLoading() {
     isLoading.value = true;
     Future.delayed(const Duration(seconds: 10), () {
@@ -90,11 +97,13 @@ class HomeController extends GetxController {
     update();
   }
 
+  ///Hide loading
   hideLoading() {
     isLoading.value = false;
     update();
   }
 
+  ///Zoom out funtion
   zoomOut() {
     transformationController.toScene(Offset.zero);
     update();
