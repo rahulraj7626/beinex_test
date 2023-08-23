@@ -12,14 +12,7 @@ Widget levelWidget(List<LevelModel> levels) {
         children: levels.mapIndexed((i, e) {
           return bgContainer(hexToColor(e.color!), e.value);
         }).toList(),
-      )
-
-      // [
-      //   bgContainer(color, txt),
-      //   bgContainer(color, txt),
-      // ],
-
-      );
+      ));
 }
 
 Container bgContainer(Color color, txt) {

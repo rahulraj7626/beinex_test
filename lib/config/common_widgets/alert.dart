@@ -17,7 +17,7 @@ class AppAlert {
 
   static showSnackBar(String msg) {
     Get.snackbar(
-      "Error",
+      "Warning",
       msg,
       snackPosition: SnackPosition.BOTTOM,
     );

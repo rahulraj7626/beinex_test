@@ -4,6 +4,7 @@ import 'package:beinex_test/src/home/presentation/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../config/app_utils/date_utils.dart';
+import '../../../../config/common_widgets/alert.dart';
 
 class DateWidget extends StatelessWidget {
   final bool status;
@@ -25,6 +26,8 @@ class DateWidget extends StatelessWidget {
         if (!status) {
           await DateTimeUtils.pickDate(context)
               .then((value) => c.changeDate(index, value));
+        } else {
+          AppAlert.showSnackBar("Not Overdue");
         }
       },
       child: Row(
@@ -33,7 +36,7 @@ class DateWidget extends StatelessWidget {
             padding: Ppadding.ver4Padding,
             child: Icon(
               Icons.calendar_month,
-              color: !status ? Colors.red : Colors.green,
+              color: status ? Colors.red : Colors.green,
             ),
           ),
           textWidget(date)

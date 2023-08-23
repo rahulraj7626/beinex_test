@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+///Mention cell size of grid
 Map<int, TableColumnWidth>? cellSize = const {
   0: FixedColumnWidth(80),
   1: FixedColumnWidth(100),

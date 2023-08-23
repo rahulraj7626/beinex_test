@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:get/get.dart';
 import '../../../../config/app_utils/date_utils.dart';
+import '../../../../config/common_widgets/alert.dart';
 import '../../../../route_manager/route.dart';
-import '../../data/datasources/constants.dart';
+import '../../../../config/constants/grid_constants.dart';
 import '../../data/models/grid_item_model.dart';
 import 'date_widget.dart';
 import 'progress_bar.dart';
@@ -60,6 +61,8 @@ class GridWdget extends StatelessWidget {
                                     datas[di].itemId,
                                     datas[di].title
                                   ]);
+                                } else {
+                                  AppAlert.showSnackBar("Not Active");
                                 }
                               },
                               child: Padding(
