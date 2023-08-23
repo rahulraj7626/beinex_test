@@ -18,29 +18,32 @@ class ProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        progressText(title),
-        Row(
-          children: [
-            Flexible(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(6),
-                child: LinearProgressIndicator(
-                    semanticsLabel: "rjhrkjhj",
-                    semanticsValue: "222",
-                    value: progressValue(totalValue, completedValue),
-                    minHeight: 30,
-                    backgroundColor: Colors.white,
-                    color: CColors.red),
+    return Padding(
+      padding: Ppadding.progressPadding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          progressText(title),
+          Row(
+            children: [
+              Flexible(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: LinearProgressIndicator(
+                      semanticsLabel: "rjhrkjhj",
+                      semanticsValue: "222",
+                      value: progressValue(totalValue, completedValue),
+                      minHeight: 30,
+                      backgroundColor: Colors.white,
+                      color: CColors.red),
+                ),
               ),
-            ),
-            progressValueText(completedValue.toString())
-          ],
-        ),
-      ],
+              progressValueText(completedValue.toString())
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

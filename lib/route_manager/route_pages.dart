@@ -1,4 +1,3 @@
-import 'package:beinex_test/config/dependency_bindings/sheet_binding.dart';
 import 'package:beinex_test/src/home/presentation/pages/home_screen.dart';
 import 'package:beinex_test/src/charts/presentation/pages/chart_screen.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -21,7 +20,6 @@ class RoutesPages {
       page: () => const ChartScreen(),
       transition: transition,
       transitionDuration: duration,
-      binding: SheetBinding(),
     ),
   ];
 }

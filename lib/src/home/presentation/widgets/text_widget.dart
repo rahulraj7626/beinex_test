@@ -38,3 +38,16 @@ Padding progressValueText(txt) {
     ),
   );
 }
+
+Padding headWidget(txt, size) {
+  return Padding(
+    padding: Ppadding.defualtPadding,
+    child: Text(
+      txt,
+      style: TextStyle(
+          color: Colors.white,
+          fontWeight: size == 18 ? FontWeight.w600 : FontWeight.w500,
+          fontSize: double.parse(size.toString())),
+    ),
+  );
+}

@@ -11,16 +11,28 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: GetBuilder<HomeController>(
-            init: HomeController(),
-            builder: (controller) {
-              return controller.isLoading.value
-                  ? Center(
-                      child: CircularProgressIndicator.adaptive(),
-                    )
-                  : GridWdget(data: [GridItem(), ...controller.mainData]);
-            }),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          "Table Data",
+          style: TextStyle(color: Colors.black87),
+        ),
+      ),
+      body: SafeArea(
+        child: Container(
+          margin: const EdgeInsets.only(top: 12, left: 8, right: 8),
+          child: GetBuilder<HomeController>(
+              init: HomeController(),
+              builder: (controller) {
+                return controller.isLoading.value
+                    ? const Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      )
+                    : GridWdget(data: [GridItem(), ...controller.mainData]);
+              }),
+        ),
       ),
     );
   }

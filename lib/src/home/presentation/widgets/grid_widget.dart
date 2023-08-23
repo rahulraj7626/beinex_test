@@ -1,15 +1,20 @@
 import 'package:beinex_test/config/constants/style_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
+import 'package:get/get.dart';
+import '../../../../config/app_utils/date_utils.dart';
+import '../../../../route_manager/route.dart';
 import '../../data/datasources/constants.dart';
 import '../../data/models/grid_item_model.dart';
 import 'date_widget.dart';
+import 'progress_bar.dart';
 import 'text_bg_widget.dart';
 import 'text_widget.dart';
 import 'widget_utils.dart';
 
 class GridWdget extends StatefulWidget {
   final List<GridItem> data;
+
   const GridWdget({super.key, required this.data});
 
   @override
@@ -39,36 +44,39 @@ class _GridWdgetState extends State<GridWdget> {
       maxScale: 5.0,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        child: Container(
-          color: Colors.white,
-          padding: EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: SingleChildScrollView(
-              child: Table(
-                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                columnWidths: cellSize,
-                border: TableBorder.all(color: Colors.grey),
-                children: datas
-                    .mapIndexed(
-                      (di, de) => di == 0
-                          ? TableRow(
-                              children: titles.mapIndexed((ti, te) {
-                                return titleWidget(te);
-                              }).toList(),
-                            )
-                          : TableRow(
-                              children: titles.mapIndexed((ci, ce) {
-                                return Padding(
-                                  padding: Ppadding.defualtPadding,
-                                  child: rowContent(ci, datas[di]),
-                                );
-                              }).toList(),
-                            ),
-                    )
-                    .toList(),
-              ),
-            ),
+        physics: const BouncingScrollPhysics(),
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Table(
+            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+            columnWidths: cellSize,
+            border: TableBorder.all(color: Colors.grey),
+            children: datas
+                .mapIndexed(
+                  (di, de) => di == 0
+                      ? TableRow(
+                          children: titles.mapIndexed((ti, te) {
+                            return titleWidget(te);
+                          }).toList(),
+                        )
+                      : TableRow(
+                          children: titles.mapIndexed((ci, ce) {
+                            return GestureDetector(
+                              onTap: () {
+                                Get.toNamed(Routes.getChart(), arguments: [
+                                  datas[di].itemId,
+                                  datas[di].title
+                                ]);
+                              },
+                              child: Padding(
+                                padding: Ppadding.defualtPadding,
+                                child: rowContent(ci, datas[di]),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                )
+                .toList(),
           ),
         ),
       ),
@@ -79,15 +87,16 @@ class _GridWdgetState extends State<GridWdget> {
 Widget rowContent(int index, GridItem item) {
   switch (index) {
     case 0:
-      return textWidget("hhh");
+      return textWidget(item.id.toString());
     case 1:
-      return textWidget("hhh");
+      return textWidget(item.itemId);
     case 2:
-      return textWidget("hhh");
+      return progressText(item.title);
     case 3:
-      return dateWidget(true, "678869");
+      return dateWidget(
+          true, DateTimeUtils.formatDateHiphen(item.date.toString()));
     case 4:
-      return Text("bar diagram");
+      return progressBar(item.status!.totalCount, item.status!.currentCount);
     case 5:
       return levelWidget(item.itemType1 != null ? [item.itemType1!] : []);
     case 6:
