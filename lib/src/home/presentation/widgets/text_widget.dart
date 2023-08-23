@@ -18,3 +18,23 @@ Padding titleWidget(txt) {
     ),
   );
 }
+
+Padding progressText(txt) {
+  return Padding(
+    padding: Ppadding.ver4Padding,
+    child: Text(
+      txt,
+      style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+    ),
+  );
+}
+
+Padding progressValueText(txt) {
+  return Padding(
+    padding: Ppadding.ver4Padding,
+    child: Text(
+      txt,
+      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+    ),
+  );
+}

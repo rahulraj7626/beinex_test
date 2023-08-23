@@ -1,6 +1,6 @@
 import 'package:beinex_test/config/dependency_bindings/sheet_binding.dart';
 import 'package:beinex_test/src/home/presentation/pages/home_screen.dart';
-import 'package:beinex_test/src/sheet/presentation/pages/sheet_screen.dart';
+import 'package:beinex_test/src/charts/presentation/pages/chart_screen.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import '../config/dependency_bindings/home_binding.dart';
 import 'route_names.dart';
@@ -17,8 +17,8 @@ class RoutesPages {
         transitionDuration: duration,
         binding: HomeBinding()),
     GetPage(
-      name: RouteName.sheetRoute,
-      page: () => const SheetScreen(),
+      name: RouteName.chartRoute,
+      page: () => const ChartScreen(),
       transition: transition,
       transitionDuration: duration,
       binding: SheetBinding(),
